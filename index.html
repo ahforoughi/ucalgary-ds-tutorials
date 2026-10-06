@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tutorials | UCalgary web design system</title>
+  <meta name="robots" content="noindex">
+  <!-- Tutorials for designers who build pages from the blocks in the Figma file: the three videos
+       (tutorials/, resources.md → Tutorials), the six steps of docs/figma.md → Build a page, and how to add
+       the Page check plugin. Not a recreation of a live page. Built only from the design system: classes
+       from components/*.css and blocks/*.css, markup from demo/blocks.html. No page CSS. The Figma file has
+       the same page (Tutorials). This page is also published (resources.md → Tutorials; agents.md →
+       Tutorial videos), so its header and footer hold no stand-ins: the menu points to this page's own
+       sections, and it has no toolbar (search and quick links), unit links or unit social accounts. -->
+  <link rel="stylesheet" href="https://use.typekit.net/zjs3ouu.css">
+  <link rel="stylesheet" href="ucds.css">
+</head>
+<body>
+  <a class="uc-skip-link" href="#main">Skip to main content</a>
+
+  <!-- Icon sprite: copied from components/icons.svg -->
+  <svg class="uc-icon-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <symbol id="icon-chevron-down" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+  <symbol id="icon-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="icon-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5L21 21"/></symbol>
+  <symbol id="icon-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="icon-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="icon-external" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></symbol>
+  <symbol id="icon-people" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14.2c2.8.4 5 2.8 5 5.8"/></symbol>
+  <symbol id="icon-puzzle" viewBox="0 0 24 24"><path d="M4 8h4a2 2 0 1 1 4 0h4v4a2 2 0 1 1 0 4v4h-4a2 2 0 1 0-4 0H4v-4a2 2 0 1 0 0-4z"/></symbol>
+  <symbol id="icon-help" viewBox="0 0 32 32"><circle cx="16" cy="16" r="15"/><path d="M12.5 12.5a3.5 3.5 0 1 1 5 3.2c-1 .5-1.5 1.3-1.5 2.3v1"/><circle cx="16" cy="23" r=".6"/></symbol>
+  <symbol id="icon-facebook" viewBox="0 0 32 32"><circle cx="16" cy="16" r="15"/><path d="M17.5 24v-7h2.5l.5-3h-3v-2c0-.9.4-1.5 1.6-1.5h1.5V8.2c-.4 0-1.3-.2-2.3-.2-2.3 0-3.8 1.4-3.8 3.9V14H12v3h2.5v7"/></symbol>
+  <symbol id="icon-x" viewBox="0 0 32 32"><circle cx="16" cy="16" r="15"/><path d="M11 10l10 12M21 10l-10 12"/></symbol>
+  <symbol id="icon-linkedin" viewBox="0 0 32 32"><circle cx="16" cy="16" r="15"/><path d="M11 14v8M11 10.5v.5M15 22v-8M15 17c0-2 1.3-3 3-3s3 1 3 3v5"/></symbol>
+  <symbol id="icon-instagram" viewBox="0 0 32 32"><circle cx="16" cy="16" r="15"/><rect x="10" y="10" width="12" height="12" rx="3.5"/><circle cx="16" cy="16" r="2.8"/><circle cx="19.6" cy="12.4" r=".5"/></symbol>
+  <symbol id="icon-youtube" viewBox="0 0 32 32"><circle cx="16" cy="16" r="15"/><rect x="9" y="11" width="14" height="10" rx="3"/><path d="M14.5 13.8v4.4l3.6-2.2z"/></symbol>
+  <symbol id="icon-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="icon-location" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+  <symbol id="icon-calendar" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></symbol>
+  <symbol id="icon-news" viewBox="0 0 24 24"><rect x="3" y="4" width="15" height="16" rx="1.5"/><path d="M18 8h3v10a2 2 0 0 1-2 2M6.5 8h8M6.5 12h8M6.5 16h5"/></symbol>
+  <symbol id="icon-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.5 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.5-3.8-9S9.5 5.5 12 3z"/></symbol>
+  <symbol id="icon-microphone" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M8.5 21h7"/></symbol>
+  <symbol id="icon-earth" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M4.5 8.5c2 .3 3.2 1.7 2.8 3.6-.3 1.6.8 2.6 2.4 3.1.9.3 1.2 1.3.9 2.6M13.5 3.2c-.6 1.6.2 2.8 1.8 3.3 1.8.6 2.6 2 1.7 3.6-.8 1.5-.5 3 .9 3.8"/></symbol>
+  <symbol id="icon-copy" viewBox="0 0 24 24"><rect x="8.5" y="8.5" width="11.5" height="11.5" rx="1.5"/><path d="M15.5 8.5V5.5A1.5 1.5 0 0 0 14 4H5.5A1.5 1.5 0 0 0 4 5.5V14a1.5 1.5 0 0 0 1.5 1.5h3"/></symbol>
+  <symbol id="icon-quote" viewBox="0 0 49 49"><path d="M0 29C0 16 6 6 17 1l3 4c-7 4-10 9-10 13a11 11 0 1 1-10 11z"/><path d="M27 29c0-13 6-23 17-28l3 4c-7 4-10 9-10 13a11 11 0 1 1-10 11z"/></symbol>
+  <symbol id="icon-building" viewBox="0 0 24 24"><path d="M3 21h18M5 21V8h14v13M8 8V4h8v4M8 12h2m4 0h2m-8 4h2m4 0h2m-4 5v-4h2v4"/><path d="M2 8h20l-2-3H4z"/></symbol>
+  <symbol id="icon-alarm" viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2M5 3 2 6m17-3 3 3M8 21l-1 2m9-2 1 2"/></symbol>
+  <symbol id="icon-meeting" viewBox="0 0 24 24"><circle cx="6" cy="7" r="2"/><circle cx="18" cy="7" r="2"/><path d="M3 14c0-1.7 1.3-3 3-3s3 1.3 3 3m6 0c0-1.7 1.3-3 3-3s3 1.3 3 3M2 16h20M5 16v5m14-5v5"/></symbol>
+  <symbol id="icon-accessibility" viewBox="0 0 24 24"><circle cx="12" cy="4" r="2"/><path d="M5 8h14m-7 0v6m0 0-3 7m3-7 3 7"/></symbol>
+  <symbol id="icon-book" viewBox="0 0 24 24"><path d="M19 3v15H6.5A1.5 1.5 0 0 0 5 19.5v-15A1.5 1.5 0 0 1 6.5 3zM5 19.5A1.5 1.5 0 0 0 6.5 21H19v-3M10 3v6l2-1.5L14 9V3"/></symbol>
+  <symbol id="icon-laptop" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="11" rx="1"/><path d="M2 19h20"/></symbol>
+  <symbol id="icon-chat" viewBox="0 0 24 24"><path d="M3 4h12v9H8l-5 4z"/><path d="M15 8h6v9l-4-3h-7v-1"/></symbol>
+  <symbol id="icon-camera" viewBox="0 0 24 24"><path d="M4 7h3l2-3h6l2 3h3a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="4"/></symbol>
+  <symbol id="icon-pause" viewBox="0 0 24 24"><rect x="6.5" y="5" width="3.5" height="14" rx="1"/><rect x="14" y="5" width="3.5" height="14" rx="1"/></symbol>
+  <symbol id="icon-list" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r=".6"/><circle cx="4.5" cy="12" r=".6"/><circle cx="4.5" cy="18" r=".6"/></symbol>
+  <symbol id="icon-tiles" viewBox="0 0 24 24"><rect x="4" y="4" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"/></symbol>
+</svg>
+
+  <header class="uc-header">
+    <div class="uc-container uc-header__inner">
+      <button class="uc-header__toggle uc-header__toggle--menu" type="button" aria-expanded="false" aria-controls="header-nav">
+        <svg class="uc-icon" aria-hidden="true"><use href="#icon-menu"/></svg>
+        <span class="uc-visually-hidden">Menu</span>
+      </button>
+      <a class="uc-header__logo" href="https://www.ucalgary.ca/"><img src="https://arts.ucalgary.ca/themes/ucalgary/ucws_theme/images/UCalgary.svg" alt="University of Calgary home" width="215" height="88"></a>
+      <div class="uc-header__nav-panel" id="header-nav" hidden>
+        <div class="uc-header__identity">
+          <a class="uc-header__unit" href="#main">Web design system</a>
+        </div>
+        <nav class="uc-header__nav" aria-label="Main">
+          <ul>
+            <li><a href="#videos">Videos</a></li>
+            <li><a href="#steps">Six steps</a></li>
+            <li><a href="#plugin">Page check plugin</a></li>
+            <li><a href="#where">Where to look things up</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+
+  <main id="main">
+    <!-- 1. Hero CTA: text hero, stacked on white, with an intro. -->
+    <section class="uc-hero-title" aria-labelledby="page-title">
+      <div class="uc-container">
+        <h1 class="uc-hero-title__title" id="page-title">Learn the design system</h1>
+        <div class="uc-hero-title__body">
+          <p class="uc-intro">Three short videos and six steps: what you need to build a UCalgary page from the blocks in the Figma file.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Layout 50/50: Streaming media (video) beside a Text block. -->
+    <div class="uc-block uc-container uc-layout uc-layout--50-50" id="videos">
+      <div class="uc-layout__region">
+        <div class="uc-block uc-container uc-streaming">
+          <figure class="uc-embed">
+            <iframe src="https://www.youtube-nocookie.com/embed/a7qnTlErnGQ" title="Tutorial 1: Meet the design system" width="560" height="315" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen loading="lazy"></iframe>
+            <figcaption class="uc-embed__caption"><p>Tutorial 1 · 2 min 43 s</p></figcaption>
+          </figure>
+        </div>
+      </div>
+      <div class="uc-layout__region">
+        <section class="uc-container uc-text" aria-labelledby="tutorial-1">
+          <h2 id="tutorial-1">1. Meet the design system</h2>
+          <p>What is in the file and how a page is made: copy the starter page, add blocks from Pick a block or Assets, choose each block’s design, type its text, and add or remove its items.</p>
+          <p class="uc-text__actions"><a class="uc-button" href="https://youtu.be/a7qnTlErnGQ">Watch on YouTube<span class="uc-visually-hidden">: Meet the design system</span></a></p>
+        </section>
+      </div>
+    </div>
+
+    <!-- 3. Layout 50/50: Streaming media (video) beside a Text block. -->
+    <div class="uc-block uc-container uc-layout uc-layout--50-50">
+      <div class="uc-layout__region">
+        <div class="uc-block uc-container uc-streaming">
+          <figure class="uc-embed">
+            <iframe src="https://www.youtube-nocookie.com/embed/j_zyKVBxgeI" title="Tutorial 2: Blocks side by side" width="560" height="315" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen loading="lazy"></iframe>
+            <figcaption class="uc-embed__caption"><p>Tutorial 2 · 2 min 29 s</p></figcaption>
+          </figure>
+        </div>
+      </div>
+      <div class="uc-layout__region">
+        <section class="uc-container uc-text" aria-labelledby="tutorial-2">
+          <h2 id="tutorial-2">2. Blocks side by side</h2>
+          <p>Layout rows: the nine column layouts, how to fill a region with a block and choose its In a region design, and which block fits which column.</p>
+          <p class="uc-text__actions"><a class="uc-button" href="https://youtu.be/j_zyKVBxgeI">Watch on YouTube<span class="uc-visually-hidden">: Blocks side by side</span></a></p>
+        </section>
+      </div>
+    </div>
+
+    <!-- 4. Layout 50/50: Streaming media (video) beside a Text block. -->
+    <div class="uc-block uc-container uc-layout uc-layout--50-50">
+      <div class="uc-layout__region">
+        <div class="uc-block uc-container uc-streaming">
+          <figure class="uc-embed">
+            <iframe src="https://www.youtube-nocookie.com/embed/MehmUaZ9M6o" title="Tutorial 3: A page, start to finish" width="560" height="315" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen loading="lazy"></iframe>
+            <figcaption class="uc-embed__caption"><p>Tutorial 3 · 2 min 37 s</p></figcaption>
+          </figure>
+        </div>
+      </div>
+      <div class="uc-layout__region">
+        <section class="uc-container uc-text" aria-labelledby="tutorial-3">
+          <h2 id="tutorial-3">3. A page, start to finish</h2>
+          <p>One program page built from the starter page, then checked: how to add the Page check plugin, run it, fix what it finds and hand the page over.</p>
+          <p class="uc-text__actions"><a class="uc-button" href="https://youtu.be/MehmUaZ9M6o">Watch on YouTube<span class="uc-visually-hidden">: A page, start to finish</span></a></p>
+        </section>
+      </div>
+    </div>
+
+    <!-- 5. Checklist on a light grey band: the six steps of Build a page. -->
+    <section class="uc-block uc-band uc-bg--subtle uc-checklist" id="steps" aria-labelledby="steps-title">
+      <div class="uc-container">
+        <h2 id="steps-title">Build a page in six steps</h2>
+        <p>The short version. The full guide, with the starter page, is on the Build a page page of the Figma file.</p>
+        <ol class="uc-checklist__steps">
+          <li class="uc-checklist__step"><h3>Copy the starter page</h3><p>On Build a page, select the starter page, copy it, add a page of your own and paste.</p></li>
+          <li class="uc-checklist__step"><h3>Add blocks</h3><p>Copy a block from Pick a block and paste it after a block on your page, or drag it in from Assets.</p></li>
+          <li class="uc-checklist__step"><h3>Choose design and text</h3><p>Select the block, then pick its design, switch parts on or off and type its text in the right panel. A name ending in (max 60) is a limit.</p></li>
+          <li class="uc-checklist__step"><h3>Add or remove items</h3><p>Double-click into the block until an item is selected. Ctrl/Cmd+D adds one; Delete removes it.</p></li>
+          <li class="uc-checklist__step"><h3>Put blocks side by side</h3><p>Add Layout/Columns, choose its columns, swap each placeholder for a block and choose its In a region design.</p></li>
+          <li class="uc-checklist__step"><h3>Check and hand over</h3><p>Run Plugins → Development → UCWC Page check, fix what it lists, and check again.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 6. Text: how to add the Page check plugin (figma-plugin/check-page), with its download. -->
+    <section class="uc-block uc-container uc-text" id="plugin" aria-labelledby="plugin-title">
+      <h2 id="plugin-title">Get the Page check plugin</h2>
+      <p>The Page check runs in the Figma desktop app and lists what on your page can’t be built as designed: a block in a column it doesn’t fit, text over its limit, anything drawn by hand. You add it once on each computer.</p>
+      <ol>
+        <li>Download the plugin and unzip it. Keep the folder: Figma reads the plugin from it.</li>
+        <li>In the Figma desktop app, choose Plugins → Development → Import plugin from manifest…</li>
+        <li>Pick the file manifest.json in the unzipped folder.</li>
+        <li>To check a page, open it and choose Plugins → Development → UCWC Page check.</li>
+      </ol>
+      <p class="uc-text__actions"><a class="uc-button" href="https://ahforoughi.github.io/ucalgary-ds-tutorials/ucwc-page-check.zip">Download the plugin</a> <a class="uc-button uc-button--outline" href="https://youtu.be/MehmUaZ9M6o?t=87">Watch how to add it</a></p>
+    </section>
+
+    <!-- 7. More information, three items, light grey accent: the pages of the Figma file to look things up on. -->
+    <section class="uc-block uc-more-info uc-more-info--light-grey" id="where" aria-labelledby="where-title">
+      <div class="uc-container">
+        <h2 class="uc-more-info__heading" id="where-title">Where to look things up</h2>
+        <p class="uc-more-info__intro">Three pages of the Figma file, right after its cover.</p>
+        <ul class="uc-more-info__items">
+          <li class="uc-more-info__item">
+            <svg class="uc-icon uc-icon--2xl" aria-hidden="true"><use href="#icon-list"/></svg>
+            <div>
+              <h3>Build a page</h3>
+              <p>The short guide, the starter page to copy and a finished example.</p>
+            </div>
+          </li>
+          <li class="uc-more-info__item">
+            <svg class="uc-icon uc-icon--2xl" aria-hidden="true"><use href="#icon-tiles"/></svg>
+            <div>
+              <h3>Pick a block</h3>
+              <p>Every block once, at full size, to copy onto your page.</p>
+            </div>
+          </li>
+          <li class="uc-more-info__item">
+            <svg class="uc-icon uc-icon--2xl" aria-hidden="true"><use href="#icon-book"/></svg>
+            <div>
+              <h3>Block reference</h3>
+              <p>Which block for what, which block fits which column, and the text limits.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="uc-footer" id="footer">
+    <div class="uc-container">
+      <div class="uc-footer__pre">
+        <div class="uc-footer__unit">
+          <svg class="uc-icon uc-icon--xl" aria-hidden="true"><use href="#icon-help"/></svg>
+          <p class="uc-footer__title">UCalgary web design system</p>
+        </div>
+      </div>
+      <div class="uc-footer__main">
+        <div>
+          <ul class="uc-footer__social" aria-label="University of Calgary on social media">
+            <li><a href="https://www.facebook.com/universityofcalgary"><svg class="uc-icon" aria-hidden="true"><use href="#icon-facebook"/></svg><span class="uc-visually-hidden">Facebook</span></a></li>
+            <li><a href="https://www.twitter.com/ucalgary"><svg class="uc-icon" aria-hidden="true"><use href="#icon-x"/></svg><span class="uc-visually-hidden">X</span></a></li>
+            <li><a href="https://www.linkedin.com/company/university-of-calgary"><svg class="uc-icon" aria-hidden="true"><use href="#icon-linkedin"/></svg><span class="uc-visually-hidden">LinkedIn</span></a></li>
+            <li><a href="https://www.instagram.com/ucalgary"><svg class="uc-icon" aria-hidden="true"><use href="#icon-instagram"/></svg><span class="uc-visually-hidden">Instagram</span></a></li>
+            <li><a href="https://www.youtube.com/c/UCalgaryCa"><svg class="uc-icon" aria-hidden="true"><use href="#icon-youtube"/></svg><span class="uc-visually-hidden">YouTube</span></a></li>
+          </ul>
+          <ul class="uc-footer__legal"><li><a href="https://www.ucalgary.ca/website-terms-conditions">Website Terms &amp; Conditions</a></li><li><a href="https://www.ucalgary.ca/legal-services/university-policies-procedures/privacy-policy">Privacy Policy</a></li><li><a href="https://ucalgarysurvey.qualtrics.com/SE/?SID=SV_2lcAqNmIryzHpZ3">Website feedback</a></li></ul>
+        </div>
+        <p class="uc-footer__wordmark"><a href="https://ucalgary.ca/startsomething"><img src="https://arts.ucalgary.ca/themes/ucalgary/ucws_theme/images/start-something.svg" alt="Start something." width="320" height="36"></a></p>
+        <div class="uc-footer__contact">
+          <address class="uc-footer__address">
+            University of Calgary<br>2500 University Drive NW<br>Calgary Alberta <span class="uc-footer__postal-code">T2N 1N4</span><br>CANADA
+          </address>
+          <p class="uc-footer__copyright">Copyright © 2026</p>
+        </div>
+      </div>
+      <div class="uc-footer__acknowledgement">
+        <p>The University of Calgary, located in the heart of Southern Alberta, both acknowledges and pays tribute to the traditional territories of the peoples of Treaty 7, which include the Blackfoot Confederacy (comprised of the Siksika, the Piikani, and the Kainai First Nations), the Tsuut’ina First Nation, and the Stoney Nakoda (including Chiniki, Bearspaw, and Goodstoney First Nations). The city of Calgary is also home to the Métis Nation within Alberta (including Nose Hill Métis District 5 and Elbow Métis District 6).</p>
+        <p>The University of Calgary is situated on land Northwest of where the Bow River meets the Elbow River, a site traditionally known as Moh’kins’tsis to the Blackfoot, Wîchîspa to the Stoney Nakoda, and Guts’ists’i to the Tsuut’ina. On this land and in this place we strive to learn together, walk together, and grow together “in a good way.”</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="header.js"></script>
+</body>
+</html>
