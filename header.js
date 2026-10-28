@@ -12,6 +12,16 @@
   const toggles = [...document.querySelectorAll('.uc-header__toggle, .uc-header__dropdown-toggle, .uc-header__nav-toggle')];
   const panelOf = (button) => document.getElementById(button.getAttribute('aria-controls'));
   const isOpen = (button) => button.getAttribute('aria-expanded') === 'true';
+  // On a stacked mobile menu, closing the previous section on pointer-induced
+  // focusout moves the next button before its click lands. Let that click close
+  // the previous section instead. Keyboard focus still dismisses immediately.
+  let pointerNavToggle = null;
+  document.addEventListener('pointerdown', (event) => {
+    pointerNavToggle = event.target.closest('.uc-header__nav-toggle');
+  }, true);
+  const clearPointer = () => { pointerNavToggle = null; };
+  document.addEventListener('pointerup', clearPointer, true);
+  document.addEventListener('pointercancel', clearPointer, true);
 
   function setOpen(button, open) {
     const panel = panelOf(button);
@@ -44,6 +54,7 @@
   toggles.filter((button) => button.matches('.uc-header__dropdown-toggle, .uc-header__nav-toggle')).forEach((button) => {
     const item = button.parentElement;
     item.addEventListener('focusout', (event) => {
+      if (event.relatedTarget && event.relatedTarget === pointerNavToggle) return;
       if (isOpen(button) && event.relatedTarget && !item.contains(event.relatedTarget)) setOpen(button, false);
     });
     document.addEventListener('click', (event) => {
