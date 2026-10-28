@@ -5746,6 +5746,52 @@ button.uc-chip:disabled {
   text-decoration: underline;
 }
 
+/* Mega links (2026-10-28; docs/blocks.md → Footer; Figma: the Footer's Mega footer switch): a
+   University-level site's links in groups, above the unit row. Two columns, three from breakpoint.md, six from
+   breakpoint.lg. Headings are capitals; links are the legal links' type, with a 24px target (WCAG 2.2). */
+.uc-footer__mega {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-8) var(--space-6);
+  padding-block: var(--space-10) var(--space-6);
+  border-bottom: var(--border-width-thin) solid var(--color-decorative-light-grey);
+  font-size: var(--font-size-xs);
+  line-height: var(--font-line-height-xs);
+  text-align: start;
+}
+
+.uc-footer__mega-heading {
+  margin: 0 0 var(--space-1);
+  font-size: var(--font-size-xs);
+  line-height: var(--font-line-height-xs);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+}
+
+/* Flex items, so a link's box sets the row's height (no line-box gap under an inline-block). */
+.uc-footer__mega li {
+  display: flex;
+}
+
+.uc-footer__mega a {
+  display: inline-block;
+  padding-block: var(--space-1);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--font-line-height-xs); /* the links' own line height would make each row 27px, not 26 as Figma */
+}
+
+@media (min-width: 768px) { /* breakpoint.md */
+  .uc-footer__mega {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 992px) { /* breakpoint.lg */
+  .uc-footer__mega {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+
 .uc-footer__pre {
   display: flex;
   flex-direction: column;
