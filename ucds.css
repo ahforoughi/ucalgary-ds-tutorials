@@ -5747,7 +5747,7 @@ button.uc-chip:disabled {
 }
 
 /* Mega links (2026-10-28; docs/blocks.md → Footer; Figma: the Footer's Mega footer switch): a
-   University-level site's links in groups, above the unit row. Two columns, three from breakpoint.md, six from
+   site's links in groups, below the unit row (first when there is none). Two columns, three from breakpoint.md, six from
    breakpoint.lg. Headings are capitals; links are the legal links' type, with a 24px target (WCAG 2.2). */
 .uc-footer__mega {
   display: grid;
