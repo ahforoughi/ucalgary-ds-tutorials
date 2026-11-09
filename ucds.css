@@ -132,6 +132,7 @@
   --layout-image-text-min-height: 400px; /** Least height of the Image with text box from breakpoint.lg (the photo fills its half, cropped). Matches UCWS. */
   --layout-thumbnail-image-width: 160px; /** Width of a Thumbnail photo where the sections go two a row (a full-width block from breakpoint.md). Matches UCWS at 1440 (15% of the window, 115 to 160px). */
   --layout-thumbnail-image-width-narrow: 85px; /** Width of a Thumbnail photo where the sections go one a row: in a 75%, 66% or 50% column, and on small screens. Matches UCWS. */
+  --layout-profile-list-photo-width: 166.5px; /** Profile list: the most a profile photo may be wide, so it is 205px tall at aspect-ratio.profile, as UCWS (a 260x320 file at max-height 205px: 166.56x205). In a narrower column the photo takes the column's width. */
   --layout-masonry-large: 370px; /** Masonry gallery group: width of the first column (the large portrait, as tall as the group). Matches UCWS. */
   --layout-masonry-medium: 270px; /** Masonry gallery group: width of the second column (the medium portrait). Matches UCWS. */
   --layout-masonry-small: 175px; /** Masonry gallery group: width of the third column (the squares) and height of each of its three rows. Matches UCWS. */
@@ -195,6 +196,7 @@
   --aspect-ratio-news: 16 / 9; /** News feed images, cropped to fill (object-fit: cover). Matches UCWS: the news image files are 554x258, but UCWS crops them to 16:9. */
   --aspect-ratio-thumbnail: 32 / 45; /** Thumbnail block images. Matches UCWS. */
   --aspect-ratio-news-featured: 554 / 258; /** The featured (first, full-width) News item's image: UCWS shows the news file at its own shape there, not cropped to 16:9. */
+  --aspect-ratio-profile: 13 / 16; /** Profile list photos, cropped to fill. Matches UCWS (260x320 files). */
   --aspect-ratio-trio: 23 / 18; /** Trio CTA card design images (345x270 files). Matches UCWS. */
   --motion-duration-instant: 150ms; /** Form field focus. */
   --motion-duration-fast: 250ms; /** Card hover scale, menu toggle. */
@@ -5318,6 +5320,176 @@ button.uc-chip:disabled {
 .uc-page-filter__pager[hidden],
 .uc-page-filter__more[hidden] {
   display: none;
+}
+
+/* blocks/profile-list.css */
+/* Profile list (blocks.md → Profile list): a grid of people from the Profiles system, as UCWS's Profile
+   list block. A header (heading, optional description, a red rule under them); an optional keyword
+   search (the Page filter's form, results, chips and Pager: page-filter.js, 25 a page); then the
+   people, five a row from breakpoint.lg, four from breakpoint.md, three from UCWS's own 556px step and
+   two below it, with a grey rule between the columns and a thin red rule under the grid. Each person:
+   an optional photo (aspect-ratio.profile), the name as a link to the profile, then optional job titles
+   and units (bold) and research interests. A field the block hides is simply left out of the markup.
+   Load it after page-filter.css: it reuses that block's form and results, laid out as one column. */
+
+/* ---- Header: heading, optional description, a red rule ---- */
+
+.uc-profile-list__header {
+  padding-block-end: var(--space-6);
+  border-block-end: var(--border-width-accent) solid var(--color-decorative-rule);
+}
+
+.uc-profile-list__header h2 {
+  margin-block-end: var(--space-6);
+}
+
+.uc-profile-list__header p {
+  font-weight: var(--font-weight-medium);
+}
+
+.uc-profile-list__header > :last-child {
+  margin-block-end: 0;
+}
+
+/* A heading without a description starts space.2 lower, as UCWS (8px). */
+.uc-profile-list__header:has(> h2:last-child) {
+  padding-block-start: var(--space-2);
+}
+
+/* ---- Keyword search: the Page filter's form, above the people (UCWS puts no filters beside them) ---- */
+
+.uc-profile-list .uc-page-filter__body {
+  display: block;
+  margin-block-start: var(--space-6);
+}
+
+.uc-profile-list .uc-page-filter__form {
+  padding-block-end: calc(var(--space-15) + var(--space-6));
+  border-block-end: var(--border-width-accent) solid var(--color-decorative-rule);
+}
+
+@media (min-width: 768px) { /* breakpoint.md: the keyword field takes a quarter of the row, as UCWS */
+  .uc-profile-list .uc-page-filter__form .uc-field {
+    max-width: calc((100% - 3 * var(--layout-gutter)) / 4);
+  }
+}
+
+/* The two buttons keep the Button's own width and padding here (the Page filter stretches them across
+   its column and narrows their padding). */
+.uc-profile-list .uc-page-filter__actions .uc-button {
+  flex: none;
+  padding-inline: var(--space-10);
+}
+
+.uc-profile-list .uc-page-filter__actions .uc-button--outline {
+  padding-inline: calc(var(--space-10) - var(--border-width-thick));
+}
+
+.uc-profile-list .uc-page-filter__results {
+  margin-block-start: var(--space-10);
+}
+
+/* UCWS has no "Show all": only the Pager. */
+.uc-profile-list .uc-page-filter__more {
+  display: none;
+}
+
+.uc-profile-list .uc-page-filter__footer {
+  margin-block-start: 0;
+}
+
+/* ---- The people ---- */
+
+/* The grid's frame: a thin red rule under it, and space.6 below that (where the Pager sits, as UCWS). It clips the first column's rule (each person has a
+   grey rule at its start), so a rule shows only between columns, whichever people a search leaves. */
+.uc-profile-list__grid {
+  overflow-x: clip;
+  overflow-clip-margin: var(--space-2);
+  margin-block-end: var(--space-6);
+  padding-block-end: var(--space-12);
+  border-block-end: var(--border-width-thin) solid var(--color-decorative-rule);
+}
+
+.uc-profile-list__header + .uc-profile-list__grid {
+  margin-block-start: var(--space-10);
+}
+
+.uc-profile-list .uc-profile-list__items {
+  --uc-profile-columns: 2;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8) 0;
+  margin: 0 calc(-1 * var(--space-5)) 0 calc(-1 * (var(--space-5) + var(--border-width-thin)));
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 556px) { /* UCWS's own step for this block */
+  .uc-profile-list .uc-profile-list__items {
+    --uc-profile-columns: 3;
+  }
+}
+
+@media (min-width: 768px) { /* breakpoint.md */
+  .uc-profile-list .uc-profile-list__items {
+    --uc-profile-columns: 4;
+  }
+}
+
+@media (min-width: 992px) { /* breakpoint.lg */
+  .uc-profile-list .uc-profile-list__items {
+    --uc-profile-columns: 5;
+  }
+}
+
+.uc-profile-list .uc-profile {
+  flex: 0 0 calc(100% / var(--uc-profile-columns));
+  min-width: 0;
+  padding: 0 var(--space-5);
+  border: 0;
+  border-inline-start: var(--border-width-thin) solid var(--color-decorative-grey);
+}
+
+.uc-profile[hidden] {
+  display: none;
+}
+
+.uc-profile__photo {
+  width: 100%;
+  max-width: var(--layout-profile-list-photo-width);
+  height: auto;
+  margin-block-end: var(--space-4);
+  aspect-ratio: var(--aspect-ratio-profile);
+  object-fit: cover;
+}
+
+.uc-profile__name {
+  margin: 0 0 var(--space-4);
+  font-size: var(--font-size-small-title);
+  line-height: var(--font-line-height-small-title);
+}
+
+.uc-profile__name a {
+  line-height: inherit;
+}
+
+.uc-profile__roles {
+  margin-block-end: var(--space-5);
+  font-weight: var(--font-weight-bold);
+}
+
+.uc-profile__role {
+  margin: 0;
+}
+
+.uc-profile__job,
+.uc-profile__unit {
+  display: block;
+}
+
+.uc-profile__research {
+  margin: 0 0 var(--space-5);
 }
 
 /* blocks/thumbnail.css */
