@@ -7,7 +7,7 @@
   <meta name="robots" content="noindex">
   <!-- Tutorials for designers who build pages from the blocks in the Figma file: the three videos
        (tutorials/, resources.md → Tutorials), the six steps of docs/figma.md → Build a page, and how to add
-       the Page check plugin. It links to the Figma file and its guide pages (resources.md → Figma). Its links to Figma and
+       the Page check and Page builder plugins. It links to the Figma file and its guide pages (resources.md → Figma). Its links to Figma and
        YouTube open in a new tab, and say so to screen readers (agents.md → Publishing the Tutorials page). Not a recreation of a live page. Built only from the design system: classes
        from components/*.css and blocks/*.css, markup from demo/blocks.html. No page CSS. The Figma file has
        the same page (Tutorials). This page is also published (resources.md → Tutorials; agents.md →
@@ -73,7 +73,8 @@
             <li><a href="#videos">Videos</a></li>
             <li><a href="#fonts">Fonts</a></li>
             <li><a href="#steps">Six steps</a></li>
-            <li><a href="#plugin">Page check plugin</a></li>
+            <li><a href="#plugin">Page check</a></li>
+            <li><a href="#builder">Page builder</a></li>
             <li><a href="#where">Where to look things up</a></li>
           </ul>
         </nav>
@@ -190,10 +191,24 @@
         <li>Pick the file manifest.json in the unzipped folder.</li>
         <li>To check a page, open it and choose Plugins → Development → UCWC Page check.</li>
       </ol>
-      <p class="uc-text__actions"><a class="uc-button" href="https://ahforoughi.github.io/ucalgary-ds-tutorials/ucwc-page-check.zip">Download the plugin</a> <a class="uc-button uc-button--outline" href="https://youtu.be/MehmUaZ9M6o?t=87" target="_blank" rel="noopener">Watch how to add it<span class="uc-visually-hidden"> (opens in a new tab)</span></a></p>
+      <p class="uc-text__actions"><a class="uc-button" href="https://ahforoughi.github.io/ucalgary-ds-tutorials/ucwc-page-check.zip">Download the Page check</a> <a class="uc-button uc-button--outline" href="https://youtu.be/MehmUaZ9M6o?t=87" target="_blank" rel="noopener">Watch how to add it<span class="uc-visually-hidden"> (opens in a new tab)</span></a></p>
     </section>
 
-    <!-- 7. More information, three items, light grey accent: the pages of the Figma file to look things up on. -->
+    <!-- 7. Text: how to add the Page builder plugin (figma-plugin/build-page; figma.md → Page builder), with its download. -->
+    <section class="uc-block uc-container uc-text" id="builder" aria-labelledby="builder-title">
+      <h2 id="builder-title">Get the Page builder</h2>
+      <p>The Page builder plans a page with you and builds it from the library’s blocks. Start from a common page or add blocks one by one, choose each block’s design from pictures, and build: the plugin makes the page and checks it. You add it once on each computer.</p>
+      <ol>
+        <li>Download the plugin and unzip it. Keep the folder: Figma reads the plugin from it.</li>
+        <li>In the Figma desktop app, choose Plugins → Development → Import plugin from manifest…, and pick manifest.json in the unzipped folder.</li>
+        <li>Open your Figma file. It must use the design system’s library (Assets → Libraries).</li>
+        <li>On the Figma page where the new page should go, choose Plugins → Development → UCWC Page builder.</li>
+        <li>Type the page’s title, start from a common page or add blocks, then choose Build page. Write the page’s text and replace the photos in Figma.</li>
+      </ol>
+      <p class="uc-text__actions"><a class="uc-button" href="https://ahforoughi.github.io/ucalgary-ds-tutorials/ucwc-page-builder.zip">Download the Page builder</a></p>
+    </section>
+
+    <!-- 8. More information, three items, light grey accent: the pages of the Figma file to look things up on. -->
     <section class="uc-block uc-more-info uc-more-info--light-grey" id="where" aria-labelledby="where-title">
       <div class="uc-container">
         <h2 class="uc-more-info__heading" id="where-title">Where to look things up</h2>
@@ -245,7 +260,8 @@
             <li><a href="#videos">Videos</a></li>
             <li><a href="#fonts">Fonts</a></li>
             <li><a href="#steps">Six steps</a></li>
-            <li><a href="#plugin">Page check plugin</a></li>
+            <li><a href="#plugin">Page check</a></li>
+            <li><a href="#builder">Page builder</a></li>
             <li><a href="#where">Where to look things up</a></li>
           </ul>
         </div>
@@ -270,6 +286,7 @@
           <h2 class="uc-footer__mega-heading">Downloads</h2>
           <ul>
             <li><a href="https://ahforoughi.github.io/ucalgary-ds-tutorials/ucwc-page-check.zip">Page check plugin</a></li>
+            <li><a href="https://ahforoughi.github.io/ucalgary-ds-tutorials/ucwc-page-builder.zip">Page builder plugin</a></li>
             <li><a href="https://fonts.adobe.com/fonts/proxima-nova" target="_blank" rel="noopener">Proxima Nova on Adobe Fonts<span class="uc-visually-hidden"> (opens in a new tab)</span></a></li>
             <li><a href="https://fonts.adobe.com/fonts/museo-slab" target="_blank" rel="noopener">Museo Slab on Adobe Fonts<span class="uc-visually-hidden"> (opens in a new tab)</span></a></li>
           </ul>
